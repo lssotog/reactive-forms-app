@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -24,14 +24,14 @@ import { FormBuilder , ReactiveFormsModule } from '@angular/forms';
 export class AppComponent {
   title = 'reactive-forms-app';
   @Input() userName: string = "Reactive forms App";
-  formGroup = this.formBuilder.group({
+  private readonly _formBuilder = inject(FormBuilder)
+  formGroup = this._formBuilder.group({
     names: [''],
     lastName: [''],
     email: [''],
     password: [''],
     confirmPassword: ['']
   });
-  constructor(private formBuilder: FormBuilder) {}
   
   clickRegister(): void {
     this.userName = `The user name is ${this.formGroup.controls.names.value}`;
