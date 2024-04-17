@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder , ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -24,16 +24,17 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class AppComponent {
   title = 'reactive-forms-app';
   @Input() userName: string = "Reactive forms App";
-  formGroup = new FormGroup({
-    names: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl('')
+  formGroup = this.formBuilder.group({
+    names: [''],
+    lastName: [''],
+    email: [''],
+    password: [''],
+    confirmPassword: ['']
   });
-
+  constructor(private formBuilder: FormBuilder) {}
+  
   clickRegister(): void {
-    this.userName = `The user name is ${this.formGroup.get('names')?.value as string}`;
+    this.userName = `The user name is ${this.formGroup.controls.names.value}`;
     console.log("name value --->", this.userName);
   }
 }
