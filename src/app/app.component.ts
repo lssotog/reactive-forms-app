@@ -25,7 +25,7 @@ export class AppComponent {
   title = 'reactive-forms-app';
   @Input() userName: string = "Reactive forms App";
   private readonly _formBuilder = inject(FormBuilder)
-  formGroup = this._formBuilder.group({
+  formGroup = this._formBuilder.nonNullable.group({
     names: [''],
     lastName: [''],
     email: [''],
