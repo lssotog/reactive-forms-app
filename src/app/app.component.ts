@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { FormBuilder , ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -24,13 +24,12 @@ import { FormBuilder , ReactiveFormsModule, Validators } from '@angular/forms';
 export class AppComponent {
   title = 'reactive-forms-app';
   @Input() userName: string = "Reactive forms App";
-  private readonly _formBuilder = inject(FormBuilder)
-  formGroup = this._formBuilder.nonNullable.group({
-    names: ['', Validators.required],
-    lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required]
+  formGroup = new FormGroup({
+    names: new FormControl('', {validators: Validators.required}),
+    lastName: new FormControl('', {validators: Validators.required}),
+    email: new FormControl('', {validators: [Validators.required, Validators.email]}),
+    password: new FormControl('', {validators: Validators.required}),
+    confirmPassword: new FormControl('', {validators: Validators.required})
   });
   
   clickRegister(): void {
