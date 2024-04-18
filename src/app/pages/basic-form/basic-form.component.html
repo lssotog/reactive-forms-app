@@ -1,0 +1,9 @@
+<section class="basic-form-container">
+  <h1>Basic form practice</h1>
+  <form class="form-container" [formGroup] = "formGroup" (ngSubmit)="clockLogin()">
+    <label>Please type the info on the fields</label>
+    <input type="text" placeholder="email" formControlName ="email"/>
+    <input type="password" placeholder="password" formControlName ="password"/>
+    <button>Login</button>
+  </form>
+</section>
