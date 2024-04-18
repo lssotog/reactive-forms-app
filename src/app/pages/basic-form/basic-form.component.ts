@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import {  FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-basic-form',
@@ -9,11 +9,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './basic-form.component.scss'
 })
 export class BasicFormComponent {
-  formGroup = new FormGroup({
-    email: new FormControl('', { validators: [Validators.required, Validators.email]} ),
-    password: new FormControl('', { validators: Validators.required })
-  });
+  private readonly _formBuilder = inject(FormBuilder);
+  formGroup = this._formBuilder.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  })
   clockLogin():void {
-    console.log("email ----->", this.formGroup.get('email')?.value as string);
+    console.log("email ----->", this.formGroup.controls.email.value);
   }
 }
