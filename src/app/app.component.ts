@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BasicFormComponent } from './pages/basic-form/basic-form.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,8 +15,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
     MatCardModule, 
     MatFormFieldModule, 
     MatIcon,
-    MatInput, 
+    MatInput,   
     ReactiveFormsModule,
+    BasicFormComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -24,6 +26,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class AppComponent {
   title = 'reactive-forms-app';
   @Input() userName: string = "Reactive forms App";
+ 
   formGroup = new FormGroup({
     names: new FormControl('', {validators: Validators.required}),
     lastName: new FormControl('', {validators: Validators.required}),
