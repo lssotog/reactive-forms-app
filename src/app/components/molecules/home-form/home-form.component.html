@@ -1,0 +1,15 @@
+<!-- <mat-card-content> -->
+  <form class="form general-container" [formGroup]="formGroup1" (ngSubmit)="homeSendInfo($event)">
+    <!-- <mat-form-field appearance="outline"> -->
+      <mat-label>correo</mat-label>
+      <my-input placeholderTxt="correo" [controlInputAtom]="formGroup1.controls.email1" id="email1"/>
+    <!-- </mat-form-field> -->
+
+    <!-- <mat-form-field appearance="outline"> -->
+      <mat-label>MFA</mat-label>
+      <my-input placeholderTxt="multifactor" [controlInputAtom]="formGroup1.controls.mfa1"/>
+    <!-- </mat-form-field> -->
+
+    <app-button>Send</app-button>
+    
+  </form>
