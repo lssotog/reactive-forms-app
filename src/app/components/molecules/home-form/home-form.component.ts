@@ -1,34 +1,33 @@
-import { Component, forwardRef, inject } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+// -----
 import { ButtonComponent } from '../../atoms/button/button.component';
 import { InputComponent } from '../../atoms/input/input.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home-form',
   standalone: true,
   imports: [ 
+    ReactiveFormsModule,
     InputComponent,
-    ButtonComponent, 
-    MatCardModule,
-    MatFormFieldModule, 
-    ReactiveFormsModule
+    ButtonComponent,
+    MatCardModule
   ],
   
   templateUrl: './home-form.component.html',
   styleUrl: './home-form.component.scss'
 })
 export class HomeFormComponent {
-  
   formGroup1 = new FormGroup({
-    email1: new FormControl (''),
+    check: new FormControl (false, [Validators.requiredTrue]),
+    email1: new FormControl ('', [Validators.required]),
     mfa1: new FormControl (''),
   });
 
-  homeSendInfo(event:any): void{
-    // debugger;
-    console.log(this.formGroup1.controls.email1.value);
-    console.log("-----> Evento",event)
+  onSubmit(): void{
+    if (this.formGroup1.valid) {
+      console.log(this.formGroup1.value);
+    }
   }
 }

@@ -1,15 +1,21 @@
-<!-- <mat-card-content> -->
-  <form class="form general-container" [formGroup]="formGroup1" (ngSubmit)="homeSendInfo($event)">
-    <!-- <mat-form-field appearance="outline"> -->
-      <mat-label>correo</mat-label>
-      <my-input placeholderTxt="correo" [controlInputAtom]="formGroup1.controls.email1" id="email1"/>
-    <!-- </mat-form-field> -->
-
-    <!-- <mat-form-field appearance="outline"> -->
-      <mat-label>MFA</mat-label>
-      <my-input placeholderTxt="multifactor" [controlInputAtom]="formGroup1.controls.mfa1"/>
-    <!-- </mat-form-field> -->
-
+<mat-card-content>
+  <form class="form general-container" [formGroup]="formGroup1" (ngSubmit)="onSubmit()">
+    <my-input
+      type="checkbox"
+      label="Check"
+      [control]="formGroup1.controls['check']"/>
+    <my-input
+      type="email"
+      [max]="10"
+      label="Email"
+      placeholder="Type email here..."
+      [control]="formGroup1.controls['email1']"/>
+    <my-input
+      type="number"
+      [max]="6"
+      label="Two Factor Authentication"
+      placeholder="Type multifactor code here..."
+      [control]="formGroup1.controls.mfa1"/>
     <app-button>Send</app-button>
-    
   </form>
+</mat-card-content>

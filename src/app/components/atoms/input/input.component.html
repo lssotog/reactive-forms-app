@@ -1,1 +1,9 @@
-  <input type="text" matInput [placeholder]="placeholderTxt" [formControl]="controlInputAtom">
+@if(type === 'checkbox') {
+  <label> {{label}} <input type="checkbox" [formControl]="control"> </label>
+} @else {
+<mat-form-field [appearance]="appearance">
+  @if(label) {<mat-label>{{label}}</mat-label>}
+  <input [type]="type" [maxlength]="max" matInput [placeholder]="placeholder" [formControl]="control">
+  <mat-error>This field is required</mat-error>
+</mat-form-field>
+}

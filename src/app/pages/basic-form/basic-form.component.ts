@@ -14,7 +14,8 @@ export class BasicFormComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   })
+
   clockLogin():void {
-    console.log("email ----->", this.formGroup.controls.email.value);
+    console.log("email ----->", this.formGroup.value);
   }
 }
